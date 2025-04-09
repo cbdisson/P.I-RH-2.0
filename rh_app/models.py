@@ -62,6 +62,7 @@ class Funcionario(models.Model):
     data_admissao = models.DateField(null=True, blank=True)
     data_demissao = models.DateField(null=True, blank=True)
     status = models.BooleanField(default=True)
+    estrangeiro = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nome_completo

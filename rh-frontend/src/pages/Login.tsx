@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
@@ -11,13 +11,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email,
-        senha,
+      const response = await axios.post("http://localhost:8000/api/token/", {
+        username,
+        password: senha,
       });
 
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
+      if (response.data.access) {
+        localStorage.setItem("token", response.data.access);
         navigate("/dashboard");
       }
     } catch (error) {
@@ -31,13 +31,13 @@ const Login = () => {
         <h2 className="text-3xl font-bold text-center text-blue-700">Login RH 2.0</h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">E-mail</label>
+            <label className="block text-sm text-gray-600 mb-1">Usuário</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-              placeholder="rh@empresa.com"
+              placeholder="rh_admin"
               required
             />
           </div>

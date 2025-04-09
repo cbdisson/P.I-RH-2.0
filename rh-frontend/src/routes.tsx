@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import Funcionarios from './pages/Funcionarios';
+import Funcionarios from './pages/Funcionarios.tsx';
 
 const isAuthenticated = () => {
-  return !!localStorage.getItem('accessToken');
+    return !!localStorage.getItem('token');
 };
 
 const AppRoutes = () => {
