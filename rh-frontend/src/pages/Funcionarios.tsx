@@ -80,10 +80,26 @@ const Funcionarios = () => {
       });
   };
 
+  // Função de logout
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    navigate('/login');  // Redireciona para a página de login
+  };
+
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Lista de Funcionários</h2>
+        
+        {/* Botão de Logout */}
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+        >
+          Logout
+        </button>
+
         <button
           onClick={handleNovoFuncionario}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
