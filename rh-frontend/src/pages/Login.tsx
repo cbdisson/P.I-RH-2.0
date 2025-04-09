@@ -18,7 +18,13 @@ const Login = () => {
 
       if (response.data.access) {
         localStorage.setItem("token", response.data.access);
-        navigate("/dashboard");
+
+        // Armazena os dados do usuário, se vierem no retorno
+        if (response.data.usuario) {
+          localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
+        }
+
+        navigate('/funcionarios');
       }
     } catch (error) {
       alert("Usuário ou senha inválidos");
