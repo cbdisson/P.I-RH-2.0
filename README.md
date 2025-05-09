@@ -46,6 +46,7 @@ pip install django
 # 4. Configure o banco de dados no settings.py
 
 # 5. Rode as migrações
+python manage.py makemigrations
 python manage.py migrate
 
 # 6. Crie um superusuário (para acessar o admin)
