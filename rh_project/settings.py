@@ -17,7 +17,6 @@ ALLOWED_HOSTS = []
 # Aplicações instaladas
 INSTALLED_APPS = [
     # Django
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -25,16 +24,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Terceiros
-    'rest_framework',
-
     # Apps do projeto
     'rh_app',
 ]
 
 # Middleware
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,14 +60,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'rh_project.wsgi.application'
 
 # Banco de Dados
+# sqlite3 para teste
+# se for usar mysql, comente(#) as variaveis do sqlite3 e remova o comente(#) das variaveis do mysql
+# e preencha as informações do mysql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rh_system',
-        'USER': 'master',
-        'PASSWORD': 'master123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        # sqlite3:
+
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
+
+        # mysql:
+
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': '',
+        # 'USER': '',
+        # 'PASSWORD': '',
+        # 'HOST': '',
+        # 'PORT': '',
     }
 }
 
@@ -103,27 +108,3 @@ STATIC_URL = 'static/'
 
 # Campo de ID padrão
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Usuário customizado
-AUTH_USER_MODEL = 'rh_app.Usuario'
-
-# Backends de autenticação
-AUTHENTICATION_BACKENDS = [
-    'rh_app.backends.CustomBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-# Configurações do Django REST Framework
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-}
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Porta padrão do Vite/React
-]
