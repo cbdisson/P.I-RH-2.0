@@ -2,13 +2,10 @@
 
 Projeto completo de um sistema de Recursos Humanos com **cadastro, listagem, edição e exclusão de funcionários**, desenvolvido para fins acadêmicos.
 
-Este repositório contém tanto o frontend (React + Vite) quanto o backend (Django REST Framework), com autenticação via JWT e banco de dados PostgreSQL.
-
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-### 🔧 Backend (Django)
 - Python 3.10+
 - Django 4+
 - MySQL
@@ -46,7 +43,6 @@ pip install django
 # 4. Configure o banco de dados no settings.py
 
 # 5. Rode as migrações
-python manage.py makemigrations
 python manage.py migrate
 
 # 6. Crie um superusuário (para acessar o admin)
